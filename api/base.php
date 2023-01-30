@@ -142,5 +142,4 @@ $db = new DB('bottom');
 // $first['bottom']= "測試中";
 // $update = $db->save($first);
 // dd($update);
-$math = $db->max("id");
-dd($math);
+
