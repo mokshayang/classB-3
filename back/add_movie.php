@@ -1,6 +1,6 @@
 <h3 class="ct">新增院線片</h3>
 
-<form action="./api/add_move.php" method="post" enctype="multipart/form-data">
+<form action="./api/add_movie.php" method="post" enctype="multipart/form-data">
     <div style="width:90%;margin:auto">
         <div style="display:flex">
             <div>影片資料</div>
@@ -58,7 +58,7 @@
                     <tr>
                         <td>導演</td>
                         <td>
-                            <input type="text" name="dire" id="">
+                            <input type="text" name="director" id="">
                         </td>
                     </tr>
                     <tr>
