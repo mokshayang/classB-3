@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>影城</title>
   <link rel="stylesheet" href="css/css.css">
-  <link href="home_files/s2.css" rel="stylesheet" type="text/css">
+  <link href="css/s2.css" rel="stylesheet" type="text/css">
   <script src="scripts/jquery-1.9.1.min.js"></script>
 </head>
 
@@ -30,13 +30,14 @@
     <div id="mm">
       <?php
       $do = $_GET['do'] ?? "main";
-      $file = "front/" . $do . ".php";
+      $file = "front/$do.php";
       if (file_exists($file)) {
         include_once $file;
       } else {
         include_once "front/main.php";
       }
       ?>
+      
     </div>
     <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
   </div>

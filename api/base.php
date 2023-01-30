@@ -4,7 +4,7 @@ date_default_timezone_set("Asia/Taipei");
 class DB
 {
     protected $table;
-    protected $psn = "mysql:host=localhost;charset=utf8;dbname=db15";
+    protected $psn = "mysql:host=localhost;charset=utf8;dbname=db15_3";
     protected $pdo;
     function __construct($table)
     {
@@ -142,4 +142,4 @@ $db = new DB('bottom');
 // $first['bottom']= "測試中";
 // $update = $db->save($first);
 // dd($update);
-
+$Trailer = new DB("trailer");

@@ -18,7 +18,7 @@ if(!empty($_POST['acc'])){
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>影城</title>
   <link rel="stylesheet" href="css/css.css">
-  <link href="Manage Page_files/s2.css" rel="stylesheet" type="text/css">
+  <link href="css/s2.css" rel="stylesheet" type="text/css">
   <script src="scripts/jquery-1.9.1.min.js"></script>
 </head>
 
@@ -43,7 +43,7 @@ if(!empty($_POST['acc'])){
       // session_start(); 不能有兩次session_start();
       if (isset($_SESSION['login'])) {//session 梅的話 去登入畫面
         $do = $_GET['do'] ?? "main";
-        $file = "back/" . $do . ".php";
+        $file = "back/$do.php";
         include_once "./back/nav.php";//back .nav 
 
         if (file_exists($file)) {
@@ -51,12 +51,10 @@ if(!empty($_POST['acc'])){
         } else {
           include_once "back/main.php";
         }
-        
       } else {
         include_once "back/login.php";
         if(isset($error)) echo $error; //將錯誤訊息，移到下方
       }
-
       ?>
     </div>
     <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
