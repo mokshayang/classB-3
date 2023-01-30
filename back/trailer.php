@@ -23,8 +23,8 @@
                         <input type="text" name="name[]" value="<?= $t['name'] ?>">
                     </div>
                     <div style="width:25%;margin:0 1px">
-                        <input type="button" onclick="sw(<?=$t['id']?>,<?=$prev?>)"  value="往上">
-                        <input type="button" onclick="sw(<?=$t['id']?>,<?=$next?>)"  value="往下">
+                        <input type="button" onclick="sw('<?=$do?>',<?=$t['id']?>,<?=$prev?>)"  value="往上">
+                        <input type="button" onclick="sw('<?=$do?>',<?=$t['id']?>,<?=$next?>)"  value="往下">
                     </div>
                     <div style="width:25%;margin:0 1px">
                         <input type="checkbox" name="sh[]" value="<?= $t['id'] ?>" <?= ($t['sh'] == 1) ? 'checked' : ''; ?>>顯示&nbsp;
@@ -61,8 +61,8 @@
     </div>
 </form>
 <script>
-    function sw(id1,id2){
-        $.post("./api/sw.php",{id1,id2},()=>{
+    function sw(table,id1,id2){
+        $.post("./api/sw.php",{table,id1,id2},()=>{
             location.reload();
         })
     }

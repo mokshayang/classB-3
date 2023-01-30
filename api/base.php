@@ -137,9 +137,10 @@ function q($sql)
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
-$db = new DB('bottom');
+
 // $first=$db->find(1);
 // $first['bottom']= "測試中";
 // $update = $db->save($first);
 // dd($update);
 $Trailer = new DB("trailer");
+$Movie= new DB("movie");
