@@ -15,10 +15,10 @@
     <div id="top" style=" background:#999 center; background-size:cover; " title="替代文字">
       <h1>ABC影城</h1>
     </div>
-    <div id="top2"> 
+    <div id="top2">
       <a href="index.php">首頁</a>
       <a href="index.php?do=order">線上訂票</a>
-      <a href="#">會員系統</a> 
+      <a href="#">會員系統</a>
       <a href="back.php">管理系統</a>
     </div>
     <div id="text"> <span class="ct">最新活動</span>
@@ -35,7 +35,6 @@
       } else {
         include_once "back/main.php";
       }
-      ?>
       ?>
     </div>
     <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
