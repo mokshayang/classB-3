@@ -7,10 +7,13 @@
         <div style="width:25%;background-color:#eee;margin:0 1px">操作</div>
     </div>
     <form action="api/edit_trailer.php" method="post">
+        <!-- 下方的固定位置 :  -->
         <div style="height:210px;overflow:auto">
             <?php
             $ts = $Trailer->all(" order by rank asc");
             foreach ($ts as $k => $t) {
+                $prev=($k==0)?$t['id']:$ts[$k-1]['id'];
+                $next=($k==(count($ts)-1))?$t['id']:$ts[$k+1]['id'];
             ?>
                 <div style="display:flex;align-items:center;justify-content:center;text-align:center">
                     <div style="width:25%;margin:0 1px;padding:2px;">
@@ -20,8 +23,8 @@
                         <input type="text" name="name[]" value="<?= $t['name'] ?>">
                     </div>
                     <div style="width:25%;margin:0 1px">
-                        <input type="button" value="往上">
-                        <input type="button" value="往下">
+                        <input type="button" onclick="sw(<?=$t['id']?>,<?=$prev?>)"  value="往上">
+                        <input type="button" onclick="sw(<?=$t['id']?>,<?=$next?>)"  value="往下">
                     </div>
                     <div style="width:25%;margin:0 1px">
                         <input type="checkbox" name="sh[]" value="<?= $t['id'] ?>" <?= ($t['sh'] == 1) ? 'checked' : ''; ?>>顯示&nbsp;
@@ -57,3 +60,10 @@
         <input type="reset" value="重置">
     </div>
 </form>
+<script>
+    function sw(id1,id2){
+        $.post("./api/sw.php",{id1,id2},()=>{
+            location.reload();
+        })
+    }
+</script>
