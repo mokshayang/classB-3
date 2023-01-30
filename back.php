@@ -2,10 +2,11 @@
 <?php //原本在back.php>login.php的判斷 :
 if(!empty($_POST['acc'])){
     if($_POST['acc']=='admin' && $_POST['pw']=='1234'){
-  
         $_SESSION['login']=1;
     }else{
-        echo "<span style='color:red'>帳號或密碼錯誤</span>";
+        // echo "<span style='color:red'>帳號或密碼錯誤</span>";
+        // echo "<script>alert('帳號或密碼錯誤')</script>";//錯誤時下方程式法還未執行，所以網頁會空白
+        $error="<span style='color:red'>帳號或密碼錯誤</span>";//將錯誤存入變數，並在下方嗅出
     }
 }
 ?>
@@ -53,6 +54,7 @@ if(!empty($_POST['acc'])){
         
       } else {
         include_once "back/login.php";
+        if(isset($error)) echo $error; //將錯誤訊息，移到下方
       }
 
       ?>
