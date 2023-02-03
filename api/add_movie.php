@@ -1,5 +1,5 @@
 <?php include_once "base.php";
-
+dd($_POST);
 if(!empty($_FILES['trailer']['tmp_name'])){//預告片
     move_uploaded_file($_FILES['trailer']['tmp_name'],"../upload/".$_FILES['trailer']['name']);
    $_POST['trailer'] = $_FILES['trailer']['name'];

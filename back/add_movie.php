@@ -13,7 +13,7 @@
                     <tr>
                         <td>分級 :</td>
                         <td>
-                            <select name="" id="">
+                            <select name="level" id="">
                                 <option value="1">普遍級</option>
                                 <option value="2">輔導級</option>
                                 <option value="3">保護級</option>
