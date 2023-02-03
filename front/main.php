@@ -38,8 +38,7 @@
             <img src="./upload/<?= $row['poster'] ?>" 
             style="width:60px;height:80px;" 
             onclick="location.href='?do=intro&id=<?= $row['id'] ?>'">
-          </div>
-          <div>
+          
             <p>分級<img src="./icon/03C0<?= $row['level'] ?>.png" alt=""></p>
             <p>上映日期<?= $row['ondate'] ?></p>
           </div>
@@ -47,13 +46,25 @@
             <button onclick="location.href='?do=intro&id=<?= $row['id'] ?>'">劇情簡介</button>
             <button onclick="location.href='?do=order&id=<?= $row['id'] ?>'">線上訂票</button>
           </div>
-          <div></div>
-
+          
         </div>
       <?php } ?>
 
     </div>
-
-    <div class="ct"> </div>
+        <style>
+          .ct a{
+            text-decoration: none;
+          }
+        </style>
+    <div class="ct"> 
+      <?php
+      for($i=1;$i<=$pages;$i++){
+        $size = ($i==$now)?'20px':'16px';
+        echo "<a href='index.php?p=$i' style='font-size:$size'> ";
+        echo" &nbsp; $i &nbsp";
+        echo " </a>";
+      }
+      ?>
+    </div>
   </div>
 </div>

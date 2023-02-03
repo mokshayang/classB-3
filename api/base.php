@@ -6,6 +6,12 @@ class DB
     protected $table;
     protected $psn = "mysql:host=localhost;charset=utf8;dbname=db15_3";
     protected $pdo;
+    public $level = [//第3題專用
+        1=>'普通級',
+        2=>'輔導級',
+        3=>'保護級',
+        4=>'限制級',
+    ];
     function __construct($table)
     {
         $this->pdo = new PDO($this->psn, 'root', '');
@@ -64,10 +70,10 @@ class DB
     function save($array)
     {
         if (isset($array['id'])) {
-            $id = $array['id'];//先將id存為變數
-            unset($array['id']);//註銷ID
-            $tmp = $this->arrayToSqlArray($array);//引入each
-            $sql = "update $this->table set ";//sql語法 update table set ``='' , ``='' .. where `id` = $id;
+            $id = $array['id']; //先將id存為變數
+            unset($array['id']); //註銷ID
+            $tmp = $this->arrayToSqlArray($array); //引入each
+            $sql = "update $this->table set "; //sql語法 update table set ``='' , ``='' .. where `id` = $id;
             $sql .= join(" , ", $tmp);
             $sql .= " where `id`=$id";
         } else {
@@ -80,12 +86,17 @@ class DB
 
     function mathSql($math, $col, ...$arg)
     {
+        $sql = "select $math($col) from $this->table ";
         if (isset($arg[0])) {
-            $tmp = $this->arrayToSqlArray($arg[0]);
-            $sql = "select $math($col) from $this->table where";
-            $sql .= join(" && ", $tmp);
-        } else {
-            $sql = "select $math($col) from $this->table";
+            if (is_array($arg[0])) {
+                $tmp = $this->arrayToSqlArray($arg[0]);
+                $sql .= " where " . join(" && ", $tmp);
+            } else {
+                $sql .= $arg[0];
+            }
+        }
+        if (isset($arg[1])) {
+            $sql .= $arg[1];
         }
         return $sql;
     }
@@ -93,31 +104,31 @@ class DB
     function count(...$arg)
     {
         $sql = $this->mathSql("count", "*", ...$arg);
-        dd($sql);
+        // dd($sql);
         return $this->pdo->query($sql)->fetchColumn();
     }
     function min($col, ...$arg)
     {
         $sql = $this->mathSql("min", $col, ...$arg);
-        dd($sql);
+        // dd($sql);
         return $this->pdo->query($sql)->fetchColumn();
     }
     function max($col, ...$arg)
     {
         $sql = $this->mathSql("max", $col, ...$arg);
-        dd($sql);
+        // dd($sql);
         return $this->pdo->query($sql)->fetchColumn();
     }
     function avg($col, ...$arg)
     {
         $sql = $this->mathSql("avg", $col, ...$arg);
-        dd($sql);
+        // dd($sql);
         return $this->pdo->query($sql)->fetchColumn();
     }
     function sum($col, ...$arg)
     {
         $sql = $this->mathSql("sum", $col, ...$arg);
-        dd($sql);
+        // dd($sql);
         return $this->pdo->query($sql)->fetchColumn();
     }
 }
@@ -143,4 +154,4 @@ function q($sql)
 // $update = $db->save($first);
 // dd($update);
 $Trailer = new DB("trailer");
-$Movie= new DB("movie");
+$Movie = new DB("movie");
