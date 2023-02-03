@@ -8,42 +8,57 @@
     <title>Document</title>
 </head>
 <style>
-    .tt{
+    .tt {
         display: grid;
         grid-template-columns: 3fr 3fr 14fr;
     }
-    .item{
+
+    .item {
         display: grid;
         grid-auto-rows: 40px 40px 80px;
+        align-items: center;
     }
-    .item div:nth-child(0){
+
+    .top {
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(3, 1fr);
+        justify-self: center;
+       
+      
     }
-    .item div:nth-child(1){
+
+    .but{
         display: grid;
-        grid-template-columns: repeat(5,1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
+       
 </style>
+
 <body>
     <div class="tt">
         <div>movie</div>
         <div>分級</div>
         <div class="item">
-            <div >
-                <div>
+            <div>
+                <div class="top">
+
                     <div>1 2 </div>
-                    <div>2  |</div>
-                    <div>3  |</div>
-                    <div>4  |</div>
-                    <div>5 |</div>
-                </div>
+                    <div>2 |</div>
+                    <div>3 |</div>
                 
+                </div>
+                <div class="but">
+                    <div>   1 </div>
+                    <div> | 2</div>
+                    <div> | 3</div>
+                    <div> | 4</div>
+                    <div> | 5</div>
+                </div>
+                <div>
+                        劇情介紹
+                </div>
             </div>
-            <div></div>
-            <div></div>
         </div>
-    </div>
 
 </body>
 
