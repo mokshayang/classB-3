@@ -1,32 +1,18 @@
-<?php include_once "base.php";
+<?php
 dd($_POST);
-if (!empty($_FILES['trailer']['tmp_name'])) { //預告片
+if (!empty($_FILES['trailer']['tmp_name'])) {
     move_uploaded_file($_FILES['trailer']['tmp_name'], "../upload/" . $_FILES['trailer']['name']);
     $_POST['trailer'] = $_FILES['trailer']['name'];
 }
-if (!empty($_FILES['poster']['tmp_name'])) { //海報
+if (!empty($_FILES['poster']['tmp_name'])) {
     move_uploaded_file($_FILES['poster']['tmp_name'], "../upload/" . $_FILES['poster']['name']);
     $_POST['poster'] = $_FILES['poster']['name'];
 }
-/*
-$_POST['name'];
-$_POST['length'];
-$_POST['level'];
-$_POST['publish'];
-$_POST['director'];
-$_POST['intor'];
-$_POST['year'];
-$_POST['month'];
-$_POST['day'];
-*/
-
-$_POST['ondate'] = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day']; //先放置 再註銷
+$_POST['ondate'] = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
 unset($_POST['year'], $_POST['month'], $_POST['day']);
-
-if (!isset($_POST['id'])) { //需加此行判斷，才能合併 編輯的時候 不會去動的欄位
+if (!isset($_POST['id'])) {//新增時 id 不在
     $_POST['sh'] = 1;
     $_POST['rank'] = $Movie->max('rank') + 1;
 }
-
 $Movie->save($_POST);
 to("../back.php?do=movie");

@@ -1,8 +1,7 @@
-<!-- 此判斷搬去back.php 的上方了 -->
-<form action="#" method="post">
+<form action="?" method="post">
     <table>
         <tr>
-            <td>帳號 :</td>
+            <td>帳號 </td>
             <td><input type="text" name="acc" id=""></td>
         </tr>
         <tr>

@@ -1,43 +1,58 @@
-<h3 class='ct'>預告片清單</h3>
-<div style="width:100%;">
-    <div style="display:flex;align-items:center;justify-content:center;text-align:center">
-        <div style="width:25%;background-color:#eee;margin:0 1px">預告片海報</div>
-        <div style="width:25%;background-color:#eee;margin:0 1px">預告片片名</div>
-        <div style="width:25%;background-color:#eee;margin:0 1px">預告片排序</div>
-        <div style="width:25%;background-color:#eee;margin:0 1px">操作</div>
+<style>
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+       
+       
+    }
+    .tit {
+        width: 25%;
+        background-color: #eee;
+        margin: 0 1px;
+    }
+</style>
+<h3 class="ct">預告片清單</h3>
+<div style='width:100%'>
+    <div class="head">
+        <div class="tit">預告片海報</div>
+        <div class="tit">預告片片名</div>
+        <div class="tit">預告片排序</div>
+        <div class="tit">操作</div>
     </div>
-    <form action="api/edit_trailer.php" method="post">
-        <!-- 下方的固定位置 :  -->
-        <div style="height:210px;overflow:auto">
+    <form action="./api/total.php?api=edit_trailer" method="post">
+        <div style="height: 210px ; overflow:auto;"><!--固定屬性-->
             <?php
-            $ts = $Trailer->all(" order by rank asc");
+            $ts = $Trailer->all(" order by rank desc");
             foreach ($ts as $k => $t) {
-                $prev=($k==0)?$t['id']:$ts[$k-1]['id'];
-                $next=($k==(count($ts)-1))?$t['id']:$ts[$k+1]['id'];
+                $show = ($t['sh'] == 1) ? "checked" : '';
+                $prev = ($k == 0) ? $t['id'] : $ts[$k - 1]['id']; //如果是第一筆，跟自己換，否則往上
+                $next = ($k == (count($ts) - 1)) ? $t['id'] : $ts[$k + 1]['id']; //如果是最後一筆。跟自己換 否則往下
             ?>
-                <div style="display:flex;align-items:center;justify-content:center;text-align:center">
-                    <div style="width:25%;margin:0 1px;padding:2px;">
-                        <img src="./upload/<?= $t['img'] ?>" alt="" style="width:100px">
+                <div class="head">
+                    <div class="tit">
+                        <img src="./upload/<?= $t['img'] ?>" style="width:100px;">
                     </div>
-                    <div style="width:25%;margin:0 1px">
+                    <div class="tit">
                         <input type="text" name="name[]" value="<?= $t['name'] ?>">
                     </div>
-                    <div style="width:25%;margin:0 1px">
-                        <input type="button" onclick="sw('<?=$do?>',<?=$t['id']?>,<?=$prev?>)"  value="往上">
-                        <input type="button" onclick="sw('<?=$do?>',<?=$t['id']?>,<?=$next?>)"  value="往下">
+                    <div class="tit">
+                        <input type="button" value="往上" onclick="sw('<?= $do ?>',<?= $t['id'] ?>,<?= $prev ?>)">
+                        <input type="button" value="往下" onclick="sw('<?= $do ?>',<?= $t['id'] ?>,<?= $next ?>)">
                     </div>
-                    <div style="width:25%;margin:0 1px">
-                        <input type="checkbox" name="sh[]" value="<?= $t['id'] ?>" <?= ($t['sh'] == 1) ? 'checked' : ''; ?>>顯示&nbsp;
+                    <div class="tit">
+                        <input type="checkbox" name="sh[]" value="<?= $t['id'] ?>" <?= $show ?>>顯示&nbsp;
                         <input type="checkbox" name="del[]" value="<?= $t['id'] ?>">刪除&nbsp;
-                        <select name="ani[]" id="">
-                            <option value="1" <?=($t['ani']==1)?'selected':'';?>>淡入淡出</option>
-                            <option value="2" <?=($t['ani']==2)?'selected':'';?>>滑入滑出</option>
-                            <option value="3" <?=($t['ani']==3)?'selected':'';?>>縮放</option>
+                        <select name="ani[]">
+                            <option value="1" <?= ($t['ani'] == 1) ? 'selected' : ''; ?>>淡入淡出</option>
+                            <option value="2" <?= ($t['ani'] == 2) ? 'selected' : ''; ?>>滑入滑出</option>
+                            <option value="3" <?= ($t['ani'] == 3) ? 'selected' : ''; ?>>縮放</option>
                         </select>
-                        <input type="hidden" name="id[]" value="<?=$t['id']?>">
+                        <input type="hidden" name="id[]" value="<?= $t['id'] ?>">
                     </div>
                 </div>
-            <?php } ?>
+            <?php  } ?>
         </div>
         <div class="ct">
             <input type="submit" value="編輯確定">
@@ -45,14 +60,12 @@
         </div>
     </form>
 </div>
-
 <hr>
-<h3 class='ct'>新增預告片海報</h3>
-<form action="api/add_trailer.php" method="post" enctype="multipart/form-data">
+<form action="api/total.php?api=add_trailer" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>預告片海報<input type="file" name="img" id=""></td>
-            <td>預告片片名<input type="text" name="name" id=""></td>
+            <td>預告片海報: <input type="file" name="img" id=""></td>
+            <td>預告片片名: <input type="text" name="name" id=""></td>
         </tr>
     </table>
     <div class="ct">
@@ -60,9 +73,14 @@
         <input type="reset" value="重置">
     </div>
 </form>
+
 <script>
-    function sw(table,id1,id2){
-        $.post("./api/sw.php",{table,id1,id2},()=>{
+    function sw(table, id1, id2) {
+        $.post("./api/sw.php", {
+            table,
+            id1,
+            id2
+        }, () => {
             location.reload();
         })
     }
