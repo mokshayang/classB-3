@@ -70,7 +70,6 @@
         flex-shrink: 0;
         box-sizing: border-box;
         padding: 3px;
-        position: relative;
     }
 
     .btn img {
@@ -97,23 +96,23 @@
 
 
             <div class="controls">
-
-                <div class="left"></div>
-
+                <div class="left" onclick="pp(1)"></div>
                 <div class="btns">
+
                     <?php
                     $posters = $Trailer->all(['sh' => 1]);
                     foreach ($posters as $key => $poster) {
                     ?>
-                        <div class="btn">
+
+                        <div class="btn " id="btn<?=$key?>">
                             <img src="./upload/<?= $poster['img'] ?>">
                             <div><?= $poster['name'] ?></div>
                         </div>
+
                     <?php } ?>
+
                 </div>
-
-                <div class="right"></div>
-
+                <div class="right" onclick="pp(2)"></div>
             </div>
 
 
@@ -122,35 +121,26 @@
 </div>
 <script>
     $('.pos').eq(0).show();
-    //目前只會動一次
-    let btns = $('.btn').length; //全部的張數
-    let p = 0; //要持續動，一刺秀四張，全部有N張
 
-    // //往右按一下
-    // $(".right").on('click',function(){
-    //     if((p+1) <= btns-4) p++;
-    //     $(".btn").css({right:80*p});
-    // })
-    // //往左按一下
-    // $(".left").on('click',function(){
-    //     if((p-1) >= 0 ) p--;
-    //     $(".btn").css({right:80*p});
-    // })
+    var nowpage = 0,
+        num = <?= count($posters) ?>;
 
-    //合併
-    $(".left,.right").on('click', function() {
-
-        if ($(this).hasClass('left')) {
-            p = (p - 1 >= 0)?p-1:p;
-        } else {
-            p = (p + 1 <= btns - 4)?p+1:p;
+    function pp(x) {
+        var s, t;
+        if (x == 1 && nowpage - 1 >= 0) {
+            nowpage--;
         }
-       
-        $(".btn").animate({right:80*p},()=>{
-            console.log("YA~");
-        });
-
-    })
+        
+        if (x == 2 && (nowpage + 1) <= num - 4) {
+            nowpage++;
+        }
+        $(".btn").hide()
+        for (s = 0; s <= 3; s++) {
+            t = s * 1 + nowpage * 1;
+            $("#btn" + t).show()
+        }
+    }
+    pp(1)
 </script>
 
 
