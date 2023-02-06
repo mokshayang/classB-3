@@ -5,11 +5,19 @@
         position: relative;
     }
 
+    .lists {
+        width: 210px;
+        height: 280px;
+        position: relative;
+        margin: auto;
+        overflow: hidden;
+    }
+
     .pos {
-        width: 200px;
+        width: 210px;
         height: 280px;
         /* background-color: #fff; */
-        margin-left: 105px;
+        /* margin-left: 105px; */
         position: absolute;
         text-align: center;
         display: none;
@@ -82,13 +90,13 @@
     <h1>預告片介紹</h1>
     <div class="rb tab" style="width:95%;">
         <div id="poster">
-
+<!-- 大魔王 -->
             <div class="lists">
                 <?php
                 $posters = $Trailer->all(['sh' => 1]);
                 foreach ($posters as $poster) {
                 ?>
-                    <div class="pos">
+                    <div class="pos" data-ani = "<?=$poster['ani']?>" >
                         <img src="./upload/<?= $poster['img'] ?>">
                         <div><?= $poster['name'] ?></div>
                     </div>
@@ -96,13 +104,14 @@
             </div>
 
 
+<!-- 小小魔王 -->
             <div class="controls">
 
                 <div class="left"></div>
 
                 <div class="btns">
                     <?php
-                    $posters = $Trailer->all(['sh' => 1]);
+                    $posters = $Trailer->all(['sh' => 1], " order by rank ");
                     foreach ($posters as $key => $poster) {
                     ?>
                         <div class="btn">
@@ -141,17 +150,95 @@
     $(".left,.right").on('click', function() {
 
         if ($(this).hasClass('left')) {
-            p = (p - 1 >= 0)?p-1:p;
+            p = (p - 1 >= 0) ? p - 1 : p;
         } else {
-            p = (p + 1 <= btns - 4)?p+1:p;
+            p = (p + 1 <= btns - 4) ? p + 1 : p;
         }
-       
-        $(".btn").animate({right:80*p},()=>{
+
+        $(".btn").animate({
+            right: 80 * p
+        }, () => {
+            //call back function 
             // console.log("YA~");
         });
 
     })
+
+
+
+
+
+
+
+    
+    //大魔王  上放的預告片
+    let now = 0;
+
+    let counter = setInterval(() => { //間隔
+        ani()//兩張 與下方 click 也有ani在跑，所以當點擊時會出現下方
+    }, 3000);
+
+    //下方點選的index 
+$('.btn').on("click",function(){
+    let _this = $(this).index();
+    // console.log('now=>',now+1,'_this=>',_this);
+    // console.log("下一張是"+$(".pos"));
+    ani(_this);//帶入下一張
+})
+
+    function ani(next) {
+        //如何知道哪一張 正在進行 visible
+        now = $('.pos:visible').index();
+
+        //next 不存在
+        if(typeof(next)=='undefined'){
+            //設置邊界
+            next = (now+1 < $('.pos').length )?now+1:0;
+        }
+
+
+        //抓取動畫方式 : PHP 撈資料
+        let Anitype = $('.pos').eq(next).data('ani');
+        // console.log('now=>'+now+',next=>'+next+',ani=>'+Anitype);
+
+        switch (Anitype) { //下張的進場 用的是 此張的動畫效果
+            case 1://淡入淡出
+                $('.pos').eq(now).fadeOut(1000, () => {
+                    $('.pos').eq(next).fadeIn(1000);
+                });
+                break;
+
+            case 2://滑入滑出
+                $('.pos').eq(now).slideUp(1000, () => {
+                    $('.pos').eq(next).slideDown(1000);
+                });
+                break;
+
+            case 3://縮放
+                $('.pos').eq(now).hide(1000, () => {
+                    $('.pos').eq(next).show(1000);
+                });
+                break;
+
+        }
+    }
+
+    $('.btns').hover(
+        function(){
+            clearInterval(counter);
+        },
+        function(){
+            counter = setInterval(()=>{
+                ani();
+            },3000)
+        }
+    )
 </script>
+
+
+
+
+
 
 
 
