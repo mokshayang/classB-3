@@ -9,8 +9,9 @@
         width: 200px;
         height: 280px;
         /* background-color: #fff; */
-        margin: auto;
+        margin-left: 105px;
         position: absolute;
+        text-align: center;
     }
 
     .pos img {
@@ -21,7 +22,7 @@
     .controls {
         width: 420px;
         height: 110px;
-        background-color: lightblue;
+        /* background-color: lightblue; */
         margin: 10px auto 0;
         display: flex;
         align-items: center;
@@ -41,11 +42,13 @@
     }
 
     .left {
-        border-right: 20px solid green;
+        border-right: 20px solid blue;
+        cursor: pointer;
     }
 
     .right {
         border-left: 20px solid blue;
+        cursor: pointer;
     }
 
     /* start 箭頭 */
@@ -53,7 +56,7 @@
     .btns {
         width: 320px;
         height: 100px;
-        background-color: green;
+        /* background-color: green; */
         display: flex;
         overflow: hidden;
     }
@@ -63,6 +66,8 @@
         text-align: center;
         /* display: none; */
         flex-shrink: 0;
+        box-sizing: border-box;
+        padding:3px;
     }
     .btn img{
         width: 100%;
@@ -112,7 +117,7 @@
     </div>
 </div>
 <script>
-    $('.btn').eq(0).show();
+    
 </script>
 
 
