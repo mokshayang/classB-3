@@ -8,7 +8,7 @@
   <title>暫時參考影城</title>
   <link rel="stylesheet" href="css/css.css">
   <!-- <link href="css/s2.css" rel="stylesheet" type="text/css"> -->
-  <script src="jd/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery-1.9.1.min.js"></script>
 </head>
 
 <body>
