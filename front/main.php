@@ -93,7 +93,7 @@
 <!-- 大魔王 -->
             <div class="lists">
                 <?php
-                $posters = $Trailer->all(['sh' => 1]);
+                $posters = $Tp->all(['sh' => 1]);
                 foreach ($posters as $poster) {
                 ?>
                     <div class="pos" data-ani = "<?=$poster['ani']?>" >
@@ -111,7 +111,7 @@
 
                 <div class="btns">
                     <?php
-                    $posters = $Trailer->all(['sh' => 1], " order by rank ");
+                    $posters = $Tp->all(['sh' => 1], " order by rank ");
                     foreach ($posters as $key => $poster) {
                     ?>
                         <div class="btn">
@@ -207,8 +207,8 @@ $('.btn').on("click",function(){
                 //     $('.pos').eq(next).fadeIn(1000);
                 // });
 
-                $('.pos').eq(next).fadeOut(2000);
-                $('.pos').eq(next).fadeIn(2000);
+                $('.pos').eq(now).fadeOut(2500);
+                $('.pos').eq(next).fadeIn(2500);
                 break;
 
             case 2://滑入滑出
@@ -216,12 +216,12 @@ $('.btn').on("click",function(){
                 $(".pos").eq(next).css({left:210,top:0,width:210,height:280});
                 $('.pos').eq(next).show();
 
-                $('.pos').eq(now).animate({left:-210,top:0,width:210,height:280},2000, () => {
+                $('.pos').eq(now).animate({left:-210,top:0,width:210,height:280},1500, () => {
                     $('.pos').eq(now).hide();
                     $('.pos').eq(now).css({left:0,top:0,width:210,height:280});
                 });
 
-                $('.pos').eq(next).animate({left:0,top:0,width:210,height:280},2000);
+                $('.pos').eq(next).animate({left:0,top:0,width:210,height:280},1500);
 
                 // $('.pos').eq(now).slideUp(1000, () => {
                 //     $('.pos').eq(next).slideDown(1000);
