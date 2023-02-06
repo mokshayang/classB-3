@@ -169,7 +169,7 @@
 
 
 
-
+    
     
     //大魔王  上放的預告片
     let now = 0;
@@ -203,23 +203,45 @@ $('.btn').on("click",function(){
 
         switch (Anitype) { //下張的進場 用的是 此張的動畫效果
             case 1://淡入淡出
-                $('.pos').eq(now).fadeOut(1000, () => {
-                    $('.pos').eq(next).fadeIn(1000);
-                });
+                // $('.pos').eq(now).fadeOut(1000, () => {
+                //     $('.pos').eq(next).fadeIn(1000);
+                // });
+
+                $('.pos').eq(next).fadeOut(2000);
+                $('.pos').eq(next).fadeIn(2000);
                 break;
 
             case 2://滑入滑出
-                $('.pos').eq(now).slideUp(1000, () => {
-                    $('.pos').eq(next).slideDown(1000);
+                //下方可以不用加
+                $(".pos").eq(next).css({left:210,top:0,width:210,height:280});
+                $('.pos').eq(next).show();
+
+                $('.pos').eq(now).animate({left:-210,top:0,width:210,height:280},2000, () => {
+                    $('.pos').eq(now).hide();
+                    $('.pos').eq(now).css({left:0,top:0,width:210,height:280});
                 });
+
+                $('.pos').eq(next).animate({left:0,top:0,width:210,height:280},2000);
+
+                // $('.pos').eq(now).slideUp(1000, () => {
+                //     $('.pos').eq(next).slideDown(1000);
+                // });
                 break;
 
             case 3://縮放
-                $('.pos').eq(now).hide(1000, () => {
-                    $('.pos').eq(next).show(1000);
-                });
-                break;
+                $(".pos").eq(next).css({left:105,top:140,width:0,height:0});
+                $('.pos').eq(now).animate({left:105,top:140,width:0,height:0},1000, () => {
+                    $('.pos').eq(now).hide();
+                    $('.pos').eq(now).css({left:0,top:0,width:210,height:280});
 
+                    $('.pos').eq(next).show();
+                    $('.pos').eq(next).animate({left:0,top:0,width:210,height:280},1000)
+                });
+
+                // $('.pos').eq(now).hide(1000, () => {
+                //     $('.pos').eq(next).show(1000);
+                // });
+                break;
         }
     }
 
