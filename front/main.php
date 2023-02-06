@@ -147,11 +147,17 @@
         }
        
         $(".btn").animate({right:80*p},()=>{
-            console.log("YA~");
+            // console.log("YA~");
         });
 
     })
 </script>
+
+
+
+
+
+
 
 
 
