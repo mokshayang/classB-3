@@ -14,8 +14,8 @@
     }
 
     .pos {
-        width: 210px;
-        height: 280px;
+        /* width: 210px;
+        height: 280px; */
         /* background-color: #fff; */
         /* margin-left: 105px; */
         position: absolute;
@@ -27,6 +27,9 @@
         width: 100%;
         height: 260px;
     }
+
+
+
 
     .controls {
         width: 420px;
@@ -198,17 +201,17 @@ $('.btn').on("click",function(){
 
 
         //抓取動畫方式 : PHP 撈資料
-        let Anitype = $('.pos').eq(next).data('ani');
-        // console.log('now=>'+now+',next=>'+next+',ani=>'+Anitype);
+        let Anitype = $('.pos').eq(now).data('ani');
+        console.log('now=>',now,'next=>',next,'ani=>'+Anitype);
 
         switch (Anitype) { //下張的進場 用的是 此張的動畫效果
             case 1://淡入淡出
-                // $('.pos').eq(now).fadeOut(1000, () => {
-                //     $('.pos').eq(next).fadeIn(1000);
-                // });
+                $('.pos').eq(now).fadeOut(1000, () => {
+                    $('.pos').eq(next).fadeIn(1000);
+                });
 
-                $('.pos').eq(now).fadeOut(2500);
-                $('.pos').eq(next).fadeIn(2500);
+                // $('.pos').eq(now).fadeOut(2500);
+                // $('.pos').eq(next).fadeIn(2500);
                 break;
 
             case 2://滑入滑出
@@ -230,12 +233,12 @@ $('.btn').on("click",function(){
 
             case 3://縮放
                 $(".pos").eq(next).css({left:105,top:140,width:0,height:0});
-                $('.pos').eq(now).animate({left:105,top:140,width:0,height:0},1000, () => {
+                $('.pos').eq(now).animate({left:105,top:140,width:0,height:0},800, () => {
                     $('.pos').eq(now).hide();
                     $('.pos').eq(now).css({left:0,top:0,width:210,height:280});
 
                     $('.pos').eq(next).show();
-                    $('.pos').eq(next).animate({left:0,top:0,width:210,height:280},1000)
+                    $('.pos').eq(next).animate({left:0,top:0,width:210,height:280},800)
                 });
 
                 // $('.pos').eq(now).hide(1000, () => {
@@ -250,9 +253,10 @@ $('.btn').on("click",function(){
             clearInterval(counter);
         },
         function(){
-            counter = setInterval(()=>{
-                ani();
-            },3000)
+            // counter = setInterval(()=>{
+            //     ani();
+            // },3000)
+           
         }
     )
 </script>
