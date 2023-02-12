@@ -80,17 +80,14 @@ $booking = [2, 4, 6, 19, 20];//先設定預訂座位
     let seats = [];
     $('.chk').on('change',function(){
         if($(this).prop('checked')){
-
             if(seats.length>=4){
                 alert("最多只能購買四張票喔");
                 $(this).prop('checked',false);
             }else{
                 seats.push($(this).val())
             }
-
             console.log(seats);
-        }else{
-            
+        }else{     
             seats.splice(seats.indexOf($(this).val()),1);
             console.log(seats);
         }

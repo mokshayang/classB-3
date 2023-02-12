@@ -58,7 +58,7 @@ $booking = [1, 4, 6, 18, 19];
                 echo "<div class='null'>";
             }
             echo "<div>";
-            echo floor(($i / 5) + 1) . "排" . ($i / 5 + 1) . "號";
+            echo floor(($i / 5) + 1) . "排" . ($i % 5 + 1) . "號";
             echo "</div>";
             if (!in_array($i, $booking)) echo "<input type='checkbox' class='chk' value='$i'>";
             echo "</div>";
