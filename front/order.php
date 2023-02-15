@@ -30,10 +30,7 @@
 
 <div id="booking" style="display:none">
 
-    <div class="ct">
-        <button onclick="$('#ord,#booking').toggle();">上一步</button>
-        <button onclick="checkout()">確定</button>
-    </div>
+   
 </div>
 <script>
     getMov();
