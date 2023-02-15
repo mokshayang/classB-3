@@ -174,6 +174,8 @@ function dummy_icon($type){
 $Trailer = new DB("trailer");//介紹片海報
 $Movie = new DB("movie");
 $Tp = new DB("tp");
+$Ord = new DB("ord");
+
 // $admin = new DB("admin_hw");
 // $subject = new DB("survey_subject_hw");
 // $options= new DB("survey_options_hw");

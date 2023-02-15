@@ -1,5 +1,10 @@
 <?php include_once "base.php";
-$booking = [1, 4, 6, 18, 19];
+$ords = $Ord->all(['movie'=>$_GET['movie'],'date'=>$_GET['date'],'session'=>$_GET['session']]);
+$booking=[];
+foreach($ords as $ord){
+    $seats = unserialize($ord['seats']);
+    $booking = array_merge($booking,$seats);
+}
 ?>
 <style>
     .box {
@@ -77,28 +82,27 @@ $booking = [1, 4, 6, 18, 19];
     </div>
 </div>
 <script>
-    let ss = [];
+    let seats = [];
     $('.chk').on('change',function(){
         if($(this).prop('checked')){
-            if(ss.length<4){
-                ss.push($(this).val());
+            if(seats.length<4){
+                seats.push($(this).val());
             }else{
                 alert("最多四張喔");
                 $(this).prop('checked',false);
             }
         }else{
-            ss.splice(ss.indexOf($(this).val()),1);
+            seats.splice(seats.indexOf($(this).val()),1);
         }
-        console.log(ss);
-        $('#num').text(ss.length);
+        $('#num').text(seats.length);
     })
     function checkout(){
-        $.post("api/order.php",{
-                            movs : $('#movs option:selected').text(),
-                            days : $('#days option:selected').val(),
-                            session : $('#session option:selected').val(),
+        $.post("api/order.php",{seats,
+                            movie : $('#movs option:selected').text(),
+                            date : $('#days').val(),
+                            session : $('#session').val(),
         },(res)=>{
-            console.log(res);
+            $('#booking').html(res);
         })
     }
 </script>

@@ -31,3 +31,4 @@ for($i=1;$i<24;$i++){
     $data['intro']="院線片 $i 劇情介紹 $i";
     $Movie->save($data);
 }
+

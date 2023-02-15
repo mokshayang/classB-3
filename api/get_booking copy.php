@@ -1,5 +1,11 @@
 <?php include_once "base.php";
-$booking = [2, 4, 6, 19, 20];//先設定預訂座位
+$ords = $Ord->all(['movie'=>$_GET['movie'],'date'=>$_GET['date'],'session'=>$_GET['session']]);
+$booking=[];
+foreach($ords as $ord){
+    $seats = unserialize($ord['seats']);
+    $booking = array_merge($booking,$seats);
+}
+
 ?>
 <!-- 圖css -->
 <style>
