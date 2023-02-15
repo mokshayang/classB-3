@@ -3,6 +3,7 @@
 if(!empty($_POST['seats'])){
     $max_id = $Ord->max('id')+1;
     $_POST['num'] = date("Ymd").sprintf("%04d",$max_id);
+    $_POST['qt'] = count($_POST['seats']);
     sort($_POST['seats']);
     $_POST['seats']=serialize($_POST['seats']);
     $Ord->save($_POST);
@@ -23,6 +24,9 @@ if(!empty($_POST['seats'])){
         <br>
         共 <?=count($seats)?> 張電影票
     </p>
+    <div class="ct">
+        <button onclick="location.href='index.php'">回首頁</button>
+    </div>
 </div>
 <?php }else{ ?>
 <div class="ct">

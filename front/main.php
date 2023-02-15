@@ -194,7 +194,7 @@ $('.btn').on("click",function(){
         now = $('.pos:visible').index();
 
         //next 不存在
-        if(typeof(next)=='undefined'){
+        if(!next){
             //設置邊界
             next = (now+1 < $('.pos').length )?now+1:0;
         }

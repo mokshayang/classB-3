@@ -14,9 +14,10 @@ for ($i = $start  ; $i <= 5; $i++) {
     2. 計算出總數 : foreach($orders as $order){$seats+=$order['seats']};
     3. 計算剩餘的座位 : 20-$seats;
     */
+    $tt = $Ord->sum('qt',['movie'=>$row['name'],'date'=>$date,'session'=>$Ord->sss[$i]]);
     echo "<option value='{$Movie->sss[$i]}'>";
     echo $Movie->sss[$i];
-    echo " 剩餘座位 20"; // n = 20-被訂走的總數(座位)
+    echo " 剩餘座位 ". (20-$tt); // n = 20-被訂走的總數(座位)
     echo "</option>";
 }
 
