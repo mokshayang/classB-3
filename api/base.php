@@ -21,7 +21,7 @@ class DB
     protected $table;
     protected $dsn="mysql:host=localhost;charset=utf8;dbname=db15_3";//個人用
     protected $pdo;
-    public $level = [
+    public $lv = [
                 1=>'普遍級',
                 2=>'輔導級',
                 3=>'保護級',
