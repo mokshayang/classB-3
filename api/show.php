@@ -1,4 +1,4 @@
 <?php include_once "base.php";
-$row = $Movie->find($_POST['id']);
-$row['sh'] = ($row['sh']+1)%2;
-$Movie->save($row);
+$sh = $Movie->find($_GET['id']);
+$sh['sh'] = ($sh['sh']+1)%2;
+$Movie->save($sh);
