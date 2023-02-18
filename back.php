@@ -1,11 +1,11 @@
 <?php include_once "api/base.php"; ?>
 <?php
-if(!empty($_POST)){
-  if($_POST['acc']=="admin" && $_POST['pw']=="1234"){
-  $_SESSION['login']=1;
+if (!empty($_POST)) {
+  if ($_POST['acc'] == "admin" && $_POST['pw'] == "1234") {
+    $_SESSION['login'] = 1;
+  } else {
+    $error = "<span style='color:red'>帳號密碼錯誤</span>";
   }
-}else{
-  $error = "<span style='color:red'>帳號密碼錯誤</span>";
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -37,21 +37,21 @@ if(!empty($_POST)){
       </marquee>
     </div>
     <div id="mm">
-    <?php
-    if(isset($_SESSION['login'])){
-      $do = $_GET['do']??"main";
-      $file = "back/$do.php";
-      include_once "back/nav.php";
-      if(file_exists($file)){
-        include_once $file;
-      }else{
-        include_once "back/main.php";
+      <?php
+      if (isset($_SESSION['login'])) {
+        $do = $_GET['do'] ?? "main";
+        $file = "back/$do.php";
+        include_once "back/nav.php";
+        if (file_exists($file)) {
+          include_once $file;
+        } else {
+          include_once "back/main.php";
+        }
+      } else {
+        include_once "back/login.php";
+        if (isset($error)) echo $error;
       }
-    }else{
-      include_once "back/login.php";
-      if(isset($error)) echo $error;
-    }
-    ?>
+      ?>
     </div>
     <div id="bo"> ©Copyright 2023~2024 ABC影城 版權所有 </div>
   </div>
