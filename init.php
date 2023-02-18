@@ -43,9 +43,9 @@ for ($i = 1; $i < 20; $i++) {
     $data['session'] = $Ord->sss[rand(1, 5)];
     $data['qt'] = rand(1, 4);
     for ($j = 0; $j < $data['qt']; $j++) {
-        $data['seats'][] = rand(0,19);
+        $data['seats'][] = rand(0, 19);
     }
-    $data['seats']=serialize($data['seats']);    
+    $data['seats'] = serialize($data['seats']);
     $Ord->save($data);
 }
 to("./index.php");
