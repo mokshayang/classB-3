@@ -109,7 +109,7 @@ class DB
             $sql = "insert into $this->table (`" . join("`,`",$col)."`)
             values ('" . join("','",$array)."')";
         }
-    //    dd($sql);
+       dd($sql);
         return $this->pdo->exec($sql);
     }
     function count(...$arg){
