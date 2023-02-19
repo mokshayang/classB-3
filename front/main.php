@@ -181,10 +181,13 @@
         grid-template-columns: 2fr 3fr;
         border: 1px solid #ccc;
         border-radius: 5px;
+        align-items: center;
+        grid-gap: 3px;
     }
 
     .bb {
         grid-column: span 2;
+        text-align: center;
     }
 </style>
 
@@ -205,7 +208,7 @@
             ?>
                 <div class="item">
                     <div class="pic">
-                        <img src="upload/<?= $row['poster'] ?>" style="width:80px" onclick="location.href='?do=intro&id=<?= $row['id'] ?>'">
+                        <img src="upload/<?= $row['poster'] ?>" style="width:80px;cursor:pointer;" onclick="location.href='?do=intro&id=<?= $row['id'] ?>'">
                     </div>
                     <div class="mid">
                         <div><?= $row['name'] ?></div>
@@ -217,7 +220,7 @@
                     </div>
                     <div class="bb">
                         <button onclick="location.href='?do=intro&id=<?= $row['id'] ?>'">劇情介紹</button>
-                        <button onclick="location.href='?do=order&&id=<?= $row['id'] ?>'">線上訂票</button>
+                        <button onclick="location.href='?do=order&id=<?= $row['id'] ?>'">線上訂票</button>
                     </div>
                 </div>
             <?php } ?>

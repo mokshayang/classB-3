@@ -42,8 +42,8 @@ for ($i = 1; $i < 20; $i++) {
     $data['date'] = $date[rand(0, 3)];
     $data['session'] = $Ord->sss[rand(1, 5)];
     $data['qt'] = rand(1, 4);
-    for ($j = 0; $j < $data['qt']; $j++) {
-        $data['seats'][] = rand(0, 19);
+    for ($j = 0; $j < $data['qt']; $j++) {//最多4張票數
+        $data['seats'][] = rand(0, 19);//20個位置隨機
     }
     $data['seats'] = serialize($data['seats']);
     $Ord->save($data);
