@@ -40,7 +40,7 @@
                 <div class="top">
                     <div>片名 :<?= $row['name'] ?></div>
                     <div>片長 :<?= $row['length'] ?></div>
-                    <div>上映日期 :<?= $row['ondate'] ?></div>
+                    <div>上映日期 :<?= $row['date'] ?></div>
                 </div>
                 <div class="mid">
                     <button onclick="show(<?= $row['id'] ?>)"><?= ($row['sh']) ? '顯示' : '隱藏'; ?></button>

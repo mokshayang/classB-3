@@ -2,13 +2,13 @@
 <div>快速刪除 :
     依日期 <input type="radio" name="tt" value="date" checked >
     <input type="text" id="date">
-    依電影 <input type="radio" name="tt" value="movie" >
-    <select id="movie">
+    依電影 <input type="radio" name="tt" value="name" >
+    <select id="name">
         <?php
-        $ods = $Ord->all(" group by movie ");
+        $ods = $Ord->all(" group by no ");
         foreach ($ods as  $od) {
-            echo "<option value='{$od['movie']}'>";
-            echo $od['movie'];
+            echo "<option value='{$od['name']}'>";
+            echo $od['name'];
             echo "</option>";
         }
         ?>
@@ -58,12 +58,12 @@
 
 <div class="hall">
     <?php
-    $ods = $Ord->all(" order by num desc");
+    $ods = $Ord->all(" order by no desc");
     foreach ($ods as $od) {
     ?>
         <div class="item">
-            <div><?= $od['num'] ?></div>
-            <div><?= $od['movie'] ?></div>
+            <div><?= $od['no'] ?></div>
+            <div><?= $od['name'] ?></div>
             <div><?= $od['date'] ?></div>
             <div><?= $od['session'] ?></div>
             <div><?= $od['qt'] ?></div>
@@ -90,8 +90,8 @@
             case 'date':
                 val = $('#date').val()
                 break;
-            case 'movie':
-                val = $('#movie').val()
+            case 'name':
+                val = $('#name').val()
                 break;
         }
         let chk = confirm(`確定要刪除${val}的所有資料嗎`);

@@ -198,12 +198,12 @@
             <?php
             $st = date("Y-m-d", strtotime("-2 day"));
             $day = date("Y-m-d");
-            $tt = $Movie->count(['sh' => 1], " && ondate between '$st' and '$day' ");
+            $tt = $Movie->count(['sh' => 1], " && date between '$st' and '$day' ");
             $div = 4;
             $p = ceil($tt / $div);
-            $now = $_GET['p'] ?? 1;
+            $now = isset($_GET['p']) ?$_GET['p'] : 1;
             $start = ($now - 1) * $div;
-            $rows = $Movie->all(['sh' => 1], " && ondate between '$st' and '$day' limit $start,$div ");
+            $rows = $Movie->all(['sh' => 1], " && date between '$st' and '$day' limit $start,$div ");
             foreach ($rows as $row) {
             ?>
                 <div class="item">
@@ -216,7 +216,7 @@
                             <img src="icon/03C0<?= $row['level'] ?>.png">
                         </div>
                         <div>上映日期</div>
-                        <div><?= $row['ondate'] ?></div>
+                        <div><?= $row['date'] ?></div>
                     </div>
                     <div class="bb">
                         <button onclick="location.href='?do=intro&id=<?= $row['id'] ?>'">劇情介紹</button>

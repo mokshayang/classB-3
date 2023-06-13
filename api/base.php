@@ -19,7 +19,7 @@ function to($location){
 class DB
 {
     protected $table;
-    protected $dsn="mysql:host=localhost;charset=utf8;dbname=db15_3";//個人用
+    protected $dsn="mysql:host=localhost;charset=utf8;dbname=db30";//個人用
     protected $pdo;
     public $lv = [
                 1=>'普遍級',
@@ -73,7 +73,6 @@ class DB
         if(isset($arg[1])){
             $sql .= $arg[1];
         }
-        //dd($sql);
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     function find($id){
@@ -113,7 +112,6 @@ class DB
             $sql = "insert into $this->table (`" . join("`,`",$col)."`)
             values ('" . join("','",$array)."')";
         }
-       dd($sql);
         return $this->pdo->exec($sql);
     }
     function count(...$arg){
@@ -179,5 +177,5 @@ function dummy_icon($type){
 $Movie = new DB("movie");
 $Tp = new DB("tp");
 $Ord = new DB("ord");
-$pos = new DB("pos");
+$Pos = new DB("pos");
 

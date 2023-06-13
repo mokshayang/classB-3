@@ -2,6 +2,7 @@
 $Movie->ddd();
 $Ord->ddd();
 $Tp->ddd();
+$Pos->ddd();
 for ($i = 1; $i < 10; $i++) {
     $data = [];
     $data['name'] = "預告片" . $i;
@@ -9,7 +10,7 @@ for ($i = 1; $i < 10; $i++) {
     $data['sh'] = 1;
     $data['rank'] = $i;
     $data['ani'] = rand(1, 3);
-    $Trailer->save($data);
+    $Pos->save($data);
     $Tp->save($data);
 }
 $date = [date("Y-m-d",strtotime("-2 day")), date("Y-m-d",strtotime("-1 day")), date("Y-m-d"), date("Y-m-d",strtotime("+1 day")),date("Y-m-d",strtotime("+2 day"))];
@@ -42,4 +43,5 @@ for ($i = 1; $i < 61; $i++) {
     $data['seats'] = serialize($data['seats']);
     $Ord->save($data);
 }
-to("./index.php");
+?>
+<a href="index.php"><button>回首頁</button></a>

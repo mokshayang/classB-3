@@ -1,7 +1,7 @@
 <h3 class="ct">編輯院線片</h3>
 <?php
 $row = $Movie->find($_GET['id']);
-$date = explode("-",$row['ondate']);
+$date = explode("-",$row['date']);
 ?>
 <style>
     .item{
