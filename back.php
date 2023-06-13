@@ -39,7 +39,8 @@ if (!empty($_POST)) {
     <div id="mm">
       <?php
       if (isset($_SESSION['login'])) {
-        $do = $_GET['do'] ?? "main";
+        $do = isset($_GET['do']) ? $_GET['do'] :"main";
+        // $do = $_GET['do'] ?? "main";
         $file = "back/$do.php";
         include_once "back/nav.php";
         if (file_exists($file)) {

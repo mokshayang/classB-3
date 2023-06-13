@@ -1,13 +1,7 @@
 <?php include_once "./api/base.php";
-$sqlMovie = " delete from movie";
-$sqlTrailer = " delete from trailer";
-$sqlTp = " delete from tp";
-$sqlOrd = "delete from ord";
-$pdo = new PDO("mysql:host=localhost;charset=utf8;dbname=db15_3", 'root', '');
-$pdo->exec($sqlMovie);
-$pdo->exec($sqlTrailer);
-$pdo->exec($sqlTp);
-$pdo->exec($sqlOrd);
+$Movie->ddd();
+$Ord->ddd();
+$Tp->ddd();
 for ($i = 1; $i < 10; $i++) {
     $data = [];
     $data['name'] = "預告片" . $i;
@@ -18,13 +12,13 @@ for ($i = 1; $i < 10; $i++) {
     $Trailer->save($data);
     $Tp->save($data);
 }
-$date = ["2023-02-17", "2023-02-18", "2023-02-19", "2023-02-20"];
-for ($i = 1; $i < 24; $i++) {
+$date = [date("Y-m-d",strtotime("-2 day")), date("Y-m-d",strtotime("-1 day")), date("Y-m-d"), date("Y-m-d",strtotime("+1 day")),date("Y-m-d",strtotime("+2 day"))];
+for ($i = 1; $i < 26; $i++) {
     $data = [];
     $data['name'] = "院線片" . $i;
     $data['level'] = rand(1, 4);
     $data['length'] = rand(90, 120);
-    $data['ondate'] = $date[rand(0, 3)];
+    $data['date'] = $date[rand(0, 4)];
     $data['publish'] = "發行商" . $i;
     $data['director'] = "我是導演" . $i;
     $data['trailer'] = "03B" . str_pad($i, 2, 0, STR_PAD_LEFT) . "v.mp4";
@@ -34,13 +28,13 @@ for ($i = 1; $i < 24; $i++) {
     $data['intro'] = "院線片 $i 劇情介紹 $i";
     $Movie->save($data);
 }
-$date = ["2023-02-17", "2023-02-18", "2023-02-19", "2023-02-20"];
-for ($i = 1; $i < 20; $i++) {
+$date = [date("Y-m-d",strtotime("-2 day")), date("Y-m-d",strtotime("-1 day")), date("Y-m-d"), date("Y-m-d",strtotime("+1 day")),date("Y-m-d",strtotime("+2 day"))];
+for ($i = 1; $i < 61; $i++) {
     $data = [];
-    $data['num'] = date("Ymd") . "00" . sprintf("%02d",$i);
-    $data['movie'] = "院線片" . $i;
-    $data['date'] = $date[rand(0, 3)];
-    $data['session'] = $Ord->sss[rand(1, 5)];
+    $data['no'] = date("Ymd") . sprintf("%04d",$i);
+    $data['name'] = "院線片" . rand(1,25);
+    $data['date'] = $date[rand(0, 4)];
+    $data['session'] = $Ord->ot[rand(1, 5)];
     $data['qt'] = rand(1, 4);
     for ($j = 0; $j < $data['qt']; $j++) {//最多4張票數
         $data['seats'][] = rand(0, 19);//20個位置隨機

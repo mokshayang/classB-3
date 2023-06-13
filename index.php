@@ -29,7 +29,8 @@
     </div>
     <div id="mm">
     <?php
-    $do = $_GET['do']??"main";
+    $do = isset($_GET['do']) ? $_GET['do'] : "main";
+    // $do = $_GET['do']??"main";
     $file = "front/$do.php";
     if(file_exists($file)){
       include_once $file;

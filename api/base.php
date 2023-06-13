@@ -8,7 +8,7 @@ function dd($array){
 }
 function q($sql){
     global $pdo;
-    $dsn="mysql:host=localhost;charset=utf8;dbname=db15_3";//個人用
+    $dsn="mysql:host=localhost;charset=utf8;dbname=db30";//個人用
     $pdo=new PDO($dsn,'root','');
     return $pdo->query($sql)->fetchAll();
 }
@@ -27,7 +27,7 @@ class DB
                 3=>'保護級',
                 4=>'限制級',
     ];
-    public $sss = [
+    public $ot = [
         1=>"14:00~1600",
         2=>"16:00~1800",
         3=>"18:00~2000",
@@ -94,6 +94,10 @@ class DB
         }else{
             $sql .= " `id`=$id";
         }
+        return $this->pdo->exec($sql);
+    }
+    function ddd(){
+        $sql = "delete from $this->table where ";
         return $this->pdo->exec($sql);
     }
     function save($array){
@@ -171,12 +175,9 @@ function dummy_icon($type){
             return "file-regular.png";
     }
 }
-$Trailer = new DB("trailer");//介紹片海報
+
 $Movie = new DB("movie");
 $Tp = new DB("tp");
 $Ord = new DB("ord");
+$pos = new DB("pos");
 
-// $admin = new DB("admin_hw");
-// $subject = new DB("survey_subject_hw");
-// $options= new DB("survey_options_hw");
-// $log = new DB("survey_log_hw");
