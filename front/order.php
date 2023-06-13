@@ -37,9 +37,6 @@
 </div>
 <script>
     getMov();
-
- 
-
     function booking(){
         let into = {
                 movie:$('#movs option:selected').text(),
@@ -57,7 +54,7 @@
     function getMov(){
         let mov = $('#movs');
         let par = location.href.split("?")[1].split("&");
-        console.log(par[1].split("=")[1]);
+        // console.log(par[1].split("=")[1]);
         $.get("api/get_movie.php",(res)=>{
             mov.html(res);
             if(par[1]) $(`option[value=${par[1].split("=")[1]}]`).prop('selected',true);
