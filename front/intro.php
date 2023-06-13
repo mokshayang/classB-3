@@ -11,7 +11,7 @@ $ms = $Movie->find($_GET['id']);
       </p>
       <p style="margin:3px">影片分級 ： <img src="icon/03C0<?=$ms['level']?>.png" style="display:inline-block;"><?=$Movie->lv[$ms['level']]?> </p>
       <p style="margin:3px">影片片長 ： <?=$ms['length']?>分</p>
-      <p style="margin:3px">上映日期 <?=$ms['ondate']?></p>
+      <p style="margin:3px">上映日期 <?=$ms['date']?></p>
       <p style="margin:3px">發行商 ： <?=$ms['publish']?></p>
       <p style="margin:3px">導演 ： <?=$ms['director']?></p>
       <br>

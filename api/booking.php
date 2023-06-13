@@ -1,6 +1,6 @@
 <?php include_once "base.php";
 $ods = $Ord->all([
-    'movie' => $_GET['movie'],
+    'name' => $_GET['movie'],
     'date' => $_GET['date'],
     'session' => $_GET['session']
 ]);

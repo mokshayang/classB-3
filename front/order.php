@@ -57,9 +57,10 @@
     function getMov(){
         let mov = $('#movs');
         let par = location.href.split("?")[1].split("&");
+        console.log(par[1].split("=")[1]);
         $.get("api/get_movie.php",(res)=>{
             mov.html(res);
-            if(par[1]) $(`optoin[value=${par[1].split("=")[1]}`).prop('selected',true);
+            if(par[1]) $(`option[value=${par[1].split("=")[1]}]`).prop('selected',true);
             getDay(mov.val());
             mov.on('click',()=> getDay(mov.val()));
         })

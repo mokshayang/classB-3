@@ -2,7 +2,6 @@
 $st = date("Y-m-d",strtotime("-2 day"));
 $day = date("Y-m-d");
 $ms = $Movie->all(['sh'=>1]," && date between '$st' and '$day' ");
-
 foreach($ms as $m){
-    echo "<option value='{$m['id']}'>{$m['name']}</option>";
+    echo "<option value={$m['id']}>{$m['name']}</option>";
 }

@@ -1,8 +1,7 @@
 <?php include_once "base.php";
 $row = $Movie->find($_GET['id']);
-$day = $row['ondate'];
+$day = $row['date'];
 $today = strtotime(date("Y-m-d"));
-
 $tt = 3+(strtotime($day)-$today)/(60*60*24);
 
 for($i=0;$i<$tt;$i++){

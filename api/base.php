@@ -96,7 +96,7 @@ class DB
         return $this->pdo->exec($sql);
     }
     function ddd(){
-        $sql = "delete from $this->table where ";
+        $sql = "delete from $this->table  ";
         return $this->pdo->exec($sql);
     }
     function save($array){
