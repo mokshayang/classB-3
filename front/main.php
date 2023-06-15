@@ -134,10 +134,13 @@
         ani(tt);
     })
     function ani(next){
+        // 設定當前張
         now = $('.po:visible').index();
+        // 定義下一張
         if(!next){
             next = (now+1 < po.length)?now+1:0;
         }
+        // 設定動畫type
         let type = po.eq(next).data('ani');
         switch(type){
             case 1:
@@ -157,10 +160,13 @@
                 break;
         }
     }
+    // move in stop . else call ani;
     $('.bts').hover(
+        // move in
         function(){
             clearInterval(counter)
         },
+        // checkout call ani every 2500 ms
         function(){
             counter = setInterval(ani,2500)
         },
