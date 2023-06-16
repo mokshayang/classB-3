@@ -64,9 +64,9 @@ foreach ($ods as $od) {
                 echo "<div class='null'>";
             }
             echo "<div>";
-            echo floor(($i / 5) + 1) . "排" . ($i % 5 + 1) . "號";
+                echo floor(($i / 5) + 1) . "排" . ($i % 5 + 1) . "號";
             echo "</div>";
-            if (!in_array($i, $booking)) echo "<input type='checkbox' value='$i' class='chk'>";
+                echo "<input type='checkbox' value='$i' class='chk'>";
             echo "</div>";
         }
         ?>
@@ -99,7 +99,7 @@ foreach ($ods as $od) {
     function checkout() {
         $.post("api/order.php", {
             seats,
-            movie: $('#movs option:selected').text(),
+            name: $('#movs option:selected').text(),
             date: $('#days').val(),
             session: $('#session').val(),
         }, (res) => {

@@ -1,15 +1,15 @@
 <?php include_once "base.php";
 if (!empty($_POST['seats'])) {
     $max = $Ord->max('id') + 1;
-    $_POST['num'] = date("Ymd") . sprintf("%04d", $max);
+    $_POST['no'] = date("Ymd") . sprintf("%04d", $max);
     sort($_POST['seats']);
     $_POST['qt'] = count($_POST['seats']);
     $_POST['seats'] = serialize($_POST['seats']);
     $Ord->save($_POST);
 ?>
     <div class="ct">
-        <p>感謝您的訂票，訂單號碼 <?= $_POST['num'] ?></p>
-        <p>電影名稱 : <?= $_POST['movie'] ?></p>
+        <p>感謝您的訂票，訂單號碼 <?= $_POST['no'] ?></p>
+        <p>電影名稱 : <?= $_POST['name'] ?></p>
         <p>日期 : <?= $_POST['date'] ?></p>
         <p>場次時間 : <?= $_POST['session'] ?></p>
         <p>
