@@ -67,6 +67,7 @@
             </div>
         <?php } ?>
     </div>
+    
     <div class="ct">
         <input type="submit" value="編輯確定">
         <input type="reset" value="重置">
